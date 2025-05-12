@@ -63,5 +63,5 @@ ax12 = axes('Units','centimeters','InnerPosition',[1.7 1.5 4 2.5]);
     xlabel('$\omega$','Interpreter','latex')
 
 %% Export
-print('Effect-of-freq&l-Appendix','-dpdf','-r0')
+% print('Effect-of-freq&l-Appendix','-dpdf','-r0')
   

@@ -1,6 +1,6 @@
-% Plot strain and flux metrics for varying frequency
+% Plot strain and flux metrics for stiffness damage
 
-% Load metric_var_d.mat
+% Load metric_var_d.mat and metric_var_freq.mat
 
 %% SET UP
 
@@ -75,4 +75,4 @@ ax12 = axes('Units','centimeters','InnerPosition',[6.5 1 5 4]);
 
 
 %% Export
-print('Effect-of-params-AD-stiff','-dpdf','-r0')    
+% print('Effect-of-params-AD-stiff','-dpdf','-r0')    

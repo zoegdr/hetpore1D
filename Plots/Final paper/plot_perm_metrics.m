@@ -1,6 +1,6 @@
 % Plot strain and flux metrics for varying frequency
 
-% Load metric_var_d.mat
+% Load metric_var_d.mat and metric_var_freq.mat
 
 %% SET UP
 
@@ -92,9 +92,6 @@ ax13 = axes('Units','centimeters','InnerPosition',[11.5 1 5 4]);
     xlabel('$\omega$','Interpreter','latex')
     
     legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[8.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',15,'FontSize',12);
-
-
-
 
 %% Export
 print('Effect-of-params-AL-perm','-dpdf','-r0')    

@@ -190,5 +190,5 @@ ax23 = axes('Units','centimeters','InnerPosition',[13.5 1.5 4 2.5]);
     xlabel('$\omega$','Interpreter','latex')
 
 %% Export
-print('Effect-of-freq&l','-dpdf','-r0')
+% print('Effect-of-freq&l','-dpdf','-r0')
   
