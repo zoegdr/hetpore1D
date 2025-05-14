@@ -24,69 +24,66 @@ params.lp = 0;
 params.dp = 0;
 params.ls = 0;
 params.ds = 0;
-params.c = 1/10;
+params.v = 1/10;
 
+params1 = params; params1.Astar = 0.2; % AS
+params2 = params; params2.Astar = 0.1; % AD
 
-d = [0 0.35 0.35 0.35];
+d = [0 0.8 0.8 0.8];
 locs = [0 0.25 0.5 0.75];
 
 % Cells to store solutions
-Stiff_D_Ts = cell(2,4); Stiff_D_dUdZ = cell(2,4); Stiff_D_Qs = cell(2,4); Stiff_D_params = cell(2,4); % Stiff decrease, 1 = AL, 2 = AD
-Perm_D_Ts = cell(2,4); Perm_D_dUdZ = cell(2,4); Perm_D_Qs = cell(2,4); Perm_D_params = cell(2,4); % Perm decrease, 1 = AL, 2 = AD
+Stiff_D_Ts = cell(2,4); Stiff_D_dUdZ = cell(2,4); Stiff_D_Qs = cell(2,4); Stiff_D_params = cell(2,4); % Stiff decrease, 1 = AS, 2 = AD
+Perm_D_Ts = cell(2,4); Perm_D_dUdZ = cell(2,4); Perm_D_Qs = cell(2,4); Perm_D_params = cell(2,4); % Perm decrease, 1 = AS, 2 = AD
 % --- Alternative stiff solutions:
-% Inc_T = cell(2,4); Inc_dUdZ = cell(2,4); Inc_Q = cell(2,4); Inc_params = cell(2,4); % Stiff increase, 1 = AL, 2 = AD 
+% Inc_T = cell(2,4); Inc_dUdZ = cell(2,4); Inc_Q = cell(2,4); Inc_params = cell(2,4); % Stiff increase, 1 = AS, 2 = AD 
 
 
 for i = 1:4
     
-    % --------- Stiff ----------
-    params.ds = d(i);
-    params.ls = locs(i);
-
-    % AL
-        params.Astar = 0.2;
-        [params,Ts,~,Phis,~,~,~,Qs,~,~,~,~,~] = tendon_uniaxial_cyclic_load_stressdiff(params);
-        Stiff_D_Ts{1,i} = Ts; Stiff_D_dUdZ{1,i} = Phis; Stiff_D_Qs{1,i} = Qs; Stiff_D_params{1,i} = params;
-        % --- Alternative:
-        % Inc_T{1,i} = Ts; Inc_dUdZ{1,i} = Phis; Inc_Q{1,i} = Qs; Inc_params{1,i} = params;
-    % AD
-        try
-        params.Astar = 0.1;
-        [params,Ts,~,Phis,~,~,~,Qs,~,~,~] = cylic_uniaxial_Lag_disp_2(params);
-        catch ME
-        end
-        if Ts(end) < params.p*2*pi/params.omega
-           Stiff_D_Ts{2,i} = NaN; Stiff_D_dUdZ{2,i} = NaN; Stiff_D_Qs{2,i} = NaN; Stiff_D_params{2,i} = params;
-           % --- Alternative:
-           % Inc_T{2,i} = NaN; Inc_dUdZ{2,i} = NaN; Inc_Q{2,i} = NaN; Inc_params{2,i} = params;
-        else  
-            Stiff_D_Ts{2,i} = Ts; Stiff_D_dUdZ{2,i} = Phis; Stiff_D_Qs{2,i} = Qs; Stiff_D_params{2,i} = params;
-            % --- Alternative:
-            % Inc_T{2,i} = Ts; Inc_dUdZ{2,i} = Phis; Inc_Q{2,i} = Qs; Inc_params{2,i} = params;
-    
-        end
+    % % --------- Stiff ----------
+    % params1.ds = d(i); params2.ds = d(i);
+    % params1.ls = locs(i); params2.ls = locs(i);
+    % 
+    % [params1,Ts,~,Phis,~,~,~,Qs,~,~,~,~,~] = tendon_uniaxial_cyclic_load_stressdiff(params1); % AS
+    % Stiff_D_Ts{1,i} = Ts; Stiff_D_dUdZ{1,i} = Phis; Stiff_D_Qs{1,i} = Qs; Stiff_D_params{1,i} = params1;
+    % % --- Alternative:
+    % % Inc_T{1,i} = Ts; Inc_dUdZ{1,i} = Phis; Inc_Q{1,i} = Qs; Inc_params{1,i} = params1;
+    % 
+    % try
+    % [params2,Ts,~,Phis,~,~,~,Qs,~,~,~] = cylic_uniaxial_Lag_disp(params2); % AD
+    % catch ME
+    % end
+    % if Ts(end) < params2.p*2*pi/params2.omega
+    %    Stiff_D_Ts{2,i} = NaN; Stiff_D_dUdZ{2,i} = NaN; Stiff_D_Qs{2,i} = NaN; Stiff_D_params{2,i} = params2;
+    %    % --- Alternative:
+    %    % Inc_T{2,i} = NaN; Inc_dUdZ{2,i} = NaN; Inc_Q{2,i} = NaN; Inc_params{2,i} = params2;
+    % else  
+    %     Stiff_D_Ts{2,i} = Ts; Stiff_D_dUdZ{2,i} = Phis; Stiff_D_Qs{2,i} = Qs; Stiff_D_params{2,i} = params2;
+    %     % --- Alternative:
+    %     % Inc_T{2,i} = Ts; Inc_dUdZ{2,i} = Phis; Inc_Q{2,i} = Qs; Inc_params{2,i} = params2;
+    % 
+    % end
 
     % --------- Perm ----------
     params.ds = 0; params.ls = 0; % reset stiff damage to 0
-    params.dp = d(i);
-    params.lp = locs(i);
+    params1.dp = d(i); params2.dp = d(i);
+    params1.lp = locs(i); params2.lp = locs(i);
 
-    % AL
-        params.Astar = 0.2;
-        [params,Ts,Zs,Phis,U_wall,Uss,Ps,Qs,Ss,dUdZ,Fluxes,dPs,ks] = tendon_uniaxial_cyclic_load_stressdiff(params);
-        Perm_D_Ts{1,i} = Ts; Perm_D_dUdZ{1,i} = Phis; Perm_D_Qs{1,i} = Qs; Perm_D_params{1,i} = params;
 
-    % AD
-        try
-        params.Astar = 0.1;
-        [params,Ts,Zs,Phis,Uss,Ss,Ps,Qs,dUdZ,dPs,ks] = cylic_uniaxial_Lag_disp_2(params);
-        catch ME
-        end
-        if Ts(end) < params.p*2*pi/params.omega
-           Perm_D_Ts{2,i} = NaN; Perm_D_dUdZ{2,i} = NaN; Perm_D_Qs{2,i} = NaN; Perm_D_params{2,i} = params;
-        else  
-            Perm_D_Ts{2,i} = Ts; Perm_D_dUdZ{2,i} = Phis; Perm_D_Qs{2,i} = Qs; Perm_D_params{2,i} = params;
+    [params1,Ts,Zs,Phis,U_wall,Uss,Ps,Qs,Ss,dUdZ,Fluxes,dPs,ks] = tendon_uniaxial_cyclic_load_stressdiff(params1); % AS
+    Perm_D_Ts{1,i} = Ts; Perm_D_dUdZ{1,i} = Phis; Perm_D_Qs{1,i} = Qs; Perm_D_params{1,i} = params1;
 
-        end
+
+    try
+    [params2,Ts,Zs,Phis,Uss,Ss,Ps,Qs,dUdZ,dPs,ks] = cylic_uniaxial_Lag_disp(params2); % AD
+    catch ME
+    end
+    if Ts(end) < params2.p*2*pi/params2.omega
+       Perm_D_Ts{2,i} = NaN; Perm_D_dUdZ{2,i} = NaN; Perm_D_Qs{2,i} = NaN; Perm_D_params{2,i} = params2;
+    else  
+        Perm_D_Ts{2,i} = Ts; Perm_D_dUdZ{2,i} = Phis; Perm_D_Qs{2,i} = Qs; Perm_D_params{2,i} = params2;
+
+    end
 
 end
