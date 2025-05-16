@@ -69,10 +69,10 @@ ax12 = axes('Units','centimeters','InnerPosition',[6.5 1 5 4]);
     % ylabel('$\Delta Q$','Interpreter','latex','Rotation',0)
     xlabel('$\omega$','Interpreter','latex')
     
-    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[6.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',15,'FontSize',12);
+    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[6.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',12,'FontSize',10);
 
 
 
 
 %% Export
-% print('Effect-of-params-AD-stiff','-dpdf','-r0')    
+print('Effect-of-params-AD-stiff','-dpdf','-r0')    

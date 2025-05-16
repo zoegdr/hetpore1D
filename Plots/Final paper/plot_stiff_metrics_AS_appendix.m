@@ -117,7 +117,7 @@ ax12 = axes('Units','centimeters','InnerPosition',[5 1.5 3.75 2.5]);
     % ax12.YAxis.Exponent = -2;
     xlabel('$\omega$','Interpreter','latex')
     
-    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[4.5 9 1 5],'NumColumns',4,'Box','off','IconColumnWidth',15,'FontSize',12);
+    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[4.5 9 1 5],'NumColumns',4,'Box','off','IconColumnWidth',12,'FontSize',10);
 
 %% Export
 print('Effect-of-params-AS-stiff-appendix','-dpdf','-r0')    

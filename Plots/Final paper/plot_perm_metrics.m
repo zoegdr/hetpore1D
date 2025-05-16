@@ -65,7 +65,7 @@ ax12 = axes('Units','centimeters','InnerPosition',[6.5 1 2.8 4]);
     plot(dss(:),(metric(:,2)-metric(1,1)),'linestyle','-','linewidth',1) % ls = 0.5
     plot(dss(:),(metric(:,3)-metric(1,1)),'linestyle','-','linewidth',1) % ls = 0.75
     xlim([0 0.9])
-    ylim([-1.5 1.5])
+    ylim([-1.5 0.1])
     xticks([0 0.5 0.9])
     xlabel('$d$','Interpreter','latex') 
     ylabel('$\Delta Q$','Interpreter','latex','Rotation',0)
@@ -91,7 +91,7 @@ ax13 = axes('Units','centimeters','InnerPosition',[11.5 1 5 4]);
     ylabel('$\Delta Q$','Interpreter','latex','Rotation',0)
     xlabel('$\omega$','Interpreter','latex')
     
-    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[8.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',15,'FontSize',12);
+    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[8.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',12,'FontSize',10);
 
 %% Export
 print('Effect-of-params-AL-perm','-dpdf','-r0')    

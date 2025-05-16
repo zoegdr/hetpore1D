@@ -1,5 +1,5 @@
 % Multiple profiles decreased stiffness VS Z
-% Load/import Stiffness+Perm_Damages_Locations.mat
+% Load/import Stiffness+Perm_Damages_Locations_2.mat
 
 %% Choose Stiff or Perm + CHANGE NAME OF FILE AT BOTTOM ACCORDINGLY
 % T = Stiff_D_Ts; dUdZ = Stiff_D_dUdZ; Q = Stiff_D_Qs; params = Stiff_D_params;
@@ -721,4 +721,4 @@ ax44 = axes('Units','centimeters','InnerPosition',[11.6 1.2 2.8 4]);
 %% Export ----------------------------------------------------------------------
 
 % print('Stiff-damage-profiles-VS-Z','-dpdf','-r0')
-print('Perm-damage-profiles-VS-Z','-dpdf','-r0')
+print('Perm-0,8-damage-profiles-VS-Z','-dpdf','-r0')

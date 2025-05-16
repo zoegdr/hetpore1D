@@ -44,9 +44,9 @@ ax11 = axes('Units','centimeters','InnerPosition',[1.5 1 2.5 3.75]);
     % ------
     xlim([0 0.9])
     xticks([0 0.5 0.9])
-    ylim([0 0.05])
+    ylim([0 0.012])
     ax11.YAxis.Exponent = -1;
-    yticks([0 0.025 0.05])
+    yticks([0 0.006 0.012])
     ylabel(ax11,{'$\Delta U$'},'Interpreter','latex','Rotation',0)
     xlabel('$d$','Interpreter','latex')
 
@@ -66,13 +66,13 @@ ax12 = axes('Units','centimeters','InnerPosition',[5 1.5 3.75 2.5]);
     plot(omegas,(metric(:,4)-metric(:,1)),'linestyle','-','linewidth',1)
     xlim([0.5 50])
     xticks([0.5 10 20 30 40 50])
-    ylim([0 0.005])
-    % yticks([0 1 2 3 4])
+    ylim([0 0.003])
+    yticks([0 0.0015 0.003])
     % ylabel('$\Delta Q$','Interpreter','latex','Rotation',0)
     ax12.YAxis.Exponent = -2;
     xlabel('$\omega$','Interpreter','latex')
     
-    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[4.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',15,'FontSize',12);
+    legend('$l = 0.25$','$l = 0.5$','$l=0.75$','Interpreter','latex','Units','centimeters','Position',[4.5 3.2 1 5],'NumColumns',4,'Box','off','IconColumnWidth',12,'FontSize',10);
 
 %% Export
 print('Effect-of-params-AD-stiff-appendix','-dpdf','-r0')    
