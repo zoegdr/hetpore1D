@@ -1,0 +1,137 @@
+% Solve the system
+params = default_parameters('stress');
+params.p = 20;
+params.omega = 1;
+[~,T_1,Zs,Phi_1,~,S_1,~,~,~,~] = cyclic_uniaxial_stress(params);
+params.omega = 10;
+[~,T_10,~,Phi_10,~,S_10,~,~,~,~] = cyclic_uniaxial_stress(params);
+params.omega = 30;
+[~,T_30,~,Phi_30,~,S_30,~,~,~,~] = cyclic_uniaxial_stress(params);
+params.omega = 50;
+[~,T_50,~,Phi_50,~,S_50,~,~,~,~] = cyclic_uniaxial_stress(params);
+params.p = 100;
+params.omega = 100;
+[~,T_100,~,Phi_100,~,S_100,~,~,~,~] = cyclic_uniaxial_stress(params);
+
+% Create figure
+fig = figure;
+
+% Set figure total dimension
+set(fig,'Units','centimeters')
+% Absolute print dimensions of figure. 
+% [pos_from_left, pos_from_bottom, fig_width, fig_height]
+set(fig,'Position',[0 0 18 8.7])
+set(fig,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[18 8.7])
+
+% Colour scheme
+cmap = slanCM('Blues',8);
+cmap_trunc = cmap(3:8,:);
+
+ax11 = axes('Units','centimeters','InnerPosition',[1.5 6.6 7.5 1.65]);
+    hold(ax11,"on")
+    box(ax11,"on")
+    set(ax11,'FontName','Times','FontSize',10);
+    set(ax11, 'ColorOrder', cmap_trunc, 'NextPlot', 'add');
+
+    plot(T_1,Phi_1(:,1),"LineWidth",0.75)
+    plot(T_1,Phi_1(:,100),"LineWidth",1.25)
+    plot(T_1,Phi_1(:,200),"LineWidth",1.25)
+    plot(T_1,Phi_1(:,300),"LineWidth",1.25)
+    plot(T_1,Phi_1(:,400),"LineWidth",1.25)
+
+    % Limits
+    ylim([0 0.25]); 
+    xlim([0 T_1(end)]);
+    
+    ylabel('$U_Z$','Interpreter','latex','Rotation',0,'FontSize',10);
+    yticks([0 0.1 0.2])
+
+    title('$\omega=1$, 20 cycles','Interpreter','latex','Rotation',0,'FontSize',10)
+
+ax12 = axes('Units','centimeters','InnerPosition',[10 6.6 7.5 1.65]);
+    hold(ax12,"on")
+    box(ax12,"on")
+    set(ax12,'FontName','Times','FontSize',10);
+    set(ax12, 'ColorOrder', cmap_trunc, 'NextPlot', 'add');
+
+    plot(T_10,Phi_10(:,1),"LineWidth",0.75)
+    plot(T_10,Phi_10(:,100),"LineWidth",1.25)
+    plot(T_10,Phi_10(:,200),"LineWidth",1.25)
+    plot(T_10,Phi_10(:,300),"LineWidth",1.25)
+    plot(T_10,Phi_10(:,400),"LineWidth",1.25)
+
+    % Limits
+    ylim([0 0.25]); 
+    xlim([0 T_10(end)]);
+
+    yticks([0 0.1 0.2])
+    yticklabels({'','',''})
+
+    title('$\omega=10$, 20 cycles','Interpreter','latex','Rotation',0,'FontSize',10)
+
+ax21 = axes('Units','centimeters','InnerPosition',[1.5 3.8 7.5 1.65]);
+    hold(ax21,"on")
+    box(ax21,"on")
+    set(ax21,'FontName','Times','FontSize',10);
+    set(ax21, 'ColorOrder', cmap_trunc, 'NextPlot', 'add');
+
+    plot(T_30,Phi_30(:,1),"LineWidth",0.75)
+    plot(T_30,Phi_30(:,100),"LineWidth",1.25)
+    plot(T_30,Phi_30(:,200),"LineWidth",1.25)
+    plot(T_30,Phi_30(:,300),"LineWidth",1.25)
+    plot(T_30,Phi_30(:,400),"LineWidth",1.25)
+
+    % Limits
+    ylim([0 0.25]); 
+    xlim([0 T_30(end)]);
+
+    ylabel('$U_Z$','Interpreter','latex','Rotation',0,'FontSize',10);
+    yticks([0 0.1 0.2])
+
+    title('$\omega=30$, 20 cycles','Interpreter','latex','Rotation',0,'FontSize',10)
+
+ax22 = axes('Units','centimeters','InnerPosition',[10 3.8 7.5 1.65]);
+    hold(ax22,"on")
+    box(ax22,"on")
+    set(ax22,'FontName','Times','FontSize',10);
+    set(ax22, 'ColorOrder', cmap_trunc, 'NextPlot', 'add');
+
+    plot(T_50,Phi_50(:,1),"LineWidth",0.75)
+    plot(T_50,Phi_50(:,100),"LineWidth",1.25)
+    plot(T_50,Phi_50(:,200),"LineWidth",1.25)
+    plot(T_50,Phi_50(:,300),"LineWidth",1.25)
+    plot(T_50,Phi_50(:,400),"LineWidth",1.25)
+
+    % Limits
+    ylim([0 0.25]); 
+    xlim([0 T_50(end)]);
+
+    yticks([0 0.1 0.2])
+    yticklabels({'','',''})
+
+    title('$\omega=50$, 20 cycles','Interpreter','latex','Rotation',0,'FontSize',10)
+
+ax3 = axes('Units','centimeters','InnerPosition',[1.5 1 16 1.65]);
+    hold(ax3,"on")
+    box(ax3,"on")
+    set(ax3,'FontName','Times','FontSize',10);
+    set(ax3, 'ColorOrder', cmap_trunc, 'NextPlot', 'add');
+
+    plot(T_100,Phi_100(:,1),"LineWidth",0.75)
+    plot(T_100,Phi_100(:,100),"LineWidth",1.25)
+    plot(T_100,Phi_100(:,200),"LineWidth",1.25)
+    plot(T_100,Phi_100(:,300),"LineWidth",1.25)
+    plot(T_100,Phi_100(:,400),"LineWidth",1.25)
+
+    % Limits
+    ylim([0 0.25]); 
+    xlim([0 T_100(end)]);
+
+    % Labels
+    xlabel('$t$','Interpreter','latex','Rotation',0,'FontSize',10);
+    ylabel('$U_Z$','Interpreter','latex','Rotation',0,'FontSize',10);
+    yticks([0 0.1 0.2])
+
+    title('$\omega=100$, 100 cycles','Interpreter','latex','Rotation',0,'FontSize',10)
+
+    print(fig, '-dpdf','-r0', '/Users/zoegodard/Library/CloudStorage/OneDrive-Nexus365/THESIS/Figures/1D-Poroelasticity/General/Transient_Phase_Appendix')
