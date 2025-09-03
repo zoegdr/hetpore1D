@@ -11,6 +11,7 @@ This repository is organised in the following way:
 - Function to create custom parameters
 
 **Solvers**
+
 4 functions which solve for Phi (Lagrangian porosity) or phi (Eulerian porosity) and take params as input:
 - 2 solvers with the AS boundary condition at Z=0 (Lagrangian and Eulerian)
 - 2 solvers with the AD boundary condition at Z=0 (Lagrangian and Eulerian)
