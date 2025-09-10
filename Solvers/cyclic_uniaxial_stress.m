@@ -56,7 +56,7 @@ function [params,Ts,Zs,Phis,Uss,Ss,Ps,Qs,dUdZ,ks] = cyclic_uniaxial_stress(param
 
 if strcmp(params,'default') % default params
     clear params
-    params = default_parameters('disp');
+    params = default_parameters('stress');
 elseif strcmp(params,'edit') % option to edit parameters
     params = create_parameters;
 else
